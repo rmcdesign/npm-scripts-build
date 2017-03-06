@@ -12,3 +12,5 @@ npm i -g postcss-cli -S
 
 
 "build:css": "node-sass src/styles.scss | postcss -c -m .postcssrc.json | mqpacker -s - | cssmin > public/styles.min.css"
+
+--include-path scss src/main.scss   public/css/main.css”
