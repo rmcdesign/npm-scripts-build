@@ -16,3 +16,6 @@ npm i -g postcss-cli -S
 --include-path scss src/main.scss   public/css/main.css”
 
 "//////////": "you can use local variables like $npm_package_version which will equal 1.0.0",
+
+
+    "watch:lint": "onchange \"src/*.js\" \"**/*.scss\" -- npm run lint",
