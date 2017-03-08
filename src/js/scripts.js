@@ -1,3 +1,12 @@
-import {sum, square, variable, MyClass} from "./module";
+import {variable} from "./module";
+//import $ from "jquery";
 
-console.log(variable);
+
+let out = document.getElementById("output");
+
+//console.log($);
+
+//$("#output").on("click", (e) => console.log($(this)));
+
+
+//out.addEventListener("click", (e) => console.log(e.target.innerHTML));

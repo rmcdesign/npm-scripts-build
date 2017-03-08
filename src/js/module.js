@@ -1,3 +1,3 @@
-var variable = 100;
+var variable = 123;
 
 export { variable };

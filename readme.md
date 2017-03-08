@@ -19,3 +19,8 @@ npm i -g postcss-cli -S
 
 
     "watch:lint": "onchange \"src/*.js\" \"**/*.scss\" -- npm run lint",
+
+
+
+    "server:create": "http-server public/ -p $npm_package_config_port",
+    "server:launch": "open http://localhost:$npm_package_config_port",
