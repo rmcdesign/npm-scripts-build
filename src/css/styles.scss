@@ -1,5 +1,10 @@
 $blue: #09f;
 
+body {
+  background: $blue;
+  color: #fff;
+}
+
 .container {
   display: flex;
 }
