@@ -1,12 +1,20 @@
 import {variable} from "./module";
-//import $ from "jquery";
+
+// let OUT = document.getElementById("output");
+//
+// OUT = "test2";
+//
 
 
-let out = document.getElementById("output");
+console.log(variable);
 
-//console.log($);
-
-//$("#output").on("click", (e) => console.log($(this)));
+// (function($) {
+//
+//
+//     $("#output").on("click", (e) => console.log(e.target));
+//
+//
+// })(jQuery);
 
 
 //out.addEventListener("click", (e) => console.log(e.target.innerHTML));
