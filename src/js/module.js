@@ -1,4 +1,4 @@
-var variable = 123;
+var variable = 34566;
 
 export { variable };
 
