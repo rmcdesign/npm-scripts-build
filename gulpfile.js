@@ -1,22 +1,24 @@
+// config
 var scss_source = './src/scss/*.scss',
     css_dest = './public/css',
     js_src = './src/js',
-    js_dest = './public/js/merged.js',
-    concat_script_name = 'scripts.js'
-    minify_suffix = '.min';
+    js_dest = './public/js',
+    server_port = 3000;
 
-// Gulp.js configuration
+// load node packages
 var gulp = require('gulp'),
     postcss = require('gulp-postcss'),
     watch = require( 'gulp-watch' ),
     gulpSass = require( 'gulp-sass' ),
+    jshint = require( 'gulp-jshint' ),
+    stylish = require( 'jshint-stylish' ),
     simplifyify = require('simplifyify'),
     browserSync = require('browser-sync').create();
 
-// apply PostCSS plugins
+// compile sass and apply PostCSS plugins
 gulp.task('scss', function() {
     return gulp.src(scss_source)
-        .pipe(gulpSass())
+        .pipe(gulpSass().on('error', gulpSass.logError))
         .pipe(postcss([
             require('autoprefixer')({
                 browsers: ['last 5 versions', '> 2%']
@@ -31,31 +33,46 @@ gulp.task('scss', function() {
 gulp.task( 'watch', function() {
     browserSync.init({
         server: "./public",
-        port: 3000,
+        port: server_port
     });
     gulp.watch( scss_source, [ 'scss' ] )
     gulp.watch( js_src + '/**/*.js', [ 'scripts' ] );
-    browserSync.reload()
+    gulp.watch( './**/*.html', function() {
+        browserSync.reload();
+    });
 } );
 
 gulp.task( 'default', [ 'scss','scripts', 'watch' ], function() {
     console.log('running');
 } );
 
-gulp.task("scripts", function(done) {
+
+gulp.task("lintjs", function() {
+    gulp.src("./src/js/*.js")
+        .pipe( jshint({
+            'esversion':  6
+        }))
+        .pipe( jshint.reporter(stylish));
+});
+
+gulp.task("scripts",  ['lintjs'], function(done) {
+    // simplifyify - browserify and uglify wrapper
+
     simplifyify(js_src + '/scripts.js',
         {
             outfile: js_dest,
             debug: true,
-            minify: true
+            //minify: true,
+            bundle: true
         })
         .on("end", function() {
             // Finished successfully!
-            browserSync.reload()
+            browserSync.reload();
             done();
         })
         .on("error", function(err) {
             // Something went wrong
             done(err);
         });
+
 });
