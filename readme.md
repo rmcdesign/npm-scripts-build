@@ -1,8 +1,12 @@
 **To setup**
 
-`npm install && npm install --global gulp`
+Install node then
 
-or short version
+If you don't already have gulp installed globally you will need to 
 
-`npm i && npm i -g gulp`
+`npm install -g gulp`
+
+then install dev dependencies specified in package.json with
+
+`npm install`
 
