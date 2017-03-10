@@ -1,13 +1,8 @@
 {
   "name": "starter",
   "version": "1.0.0",
-  "description": "",
+  "description": "Frontend build dependencies using gulp",
   "main": "index.js",
-  "config": {
-    "port": "3000",
-    "scss_src": "src/scss",
-    "css_out": "public/css"
-  },
   "browserify": {
     "transform": [
       [
@@ -21,28 +16,7 @@
     ]
   },
   "scripts": {
-    "start": "npm-run-all --parallel server watch",
-    "prepush": "npm run lint",
-    "///////////////////////////// RUN LOCAL SERVER FOR LIVE RELOADING //////////////////////////////////////": "",
-    "serverold": "npm-run-all --parallel server:*",
-    "server": "browser-sync start --no-open --server 'public' --port $npm_package_config_port",
-    "server:reload": "browser-sync reload",
-    "///////////////////////////// WATCH FOR CHANGES TO CSS AND JS //////////////////////////////////////": "",
-    "watch": "npm-run-all --parallel watch:*",
-    "watch:php": "onchange public/**/*.php -- npm run server:reload",
-    "watch:html": "onchange public/**/*.html -- npm run server:reload",
-    "watch:css": "onchange src/**/*.scss -- npm run build:css",
-    "watch:js": "onchange src/**/*.js -- npm run build:js",
-    "/////////////////////COMPILE SCSS - MINIFY - ADD VENDOR PREFIXES - OPTIMISE MEDIA QUERIES /////////////////////////////////": "",
-    "build:css": "node-sass --output-style compressed $npm_package_config_scss_src --output $npm_package_config_css_out && npm-run-all css:*",
-    "postbuild:css": "npm run server:reload",
-    "-css:clean": "cleancss --level 2 $npm_package_config_css_out/*.css --output $npm_package_config_css_out/*.min.css",
-    "css:autoprefix": "postcss $npm_package_config_css_out/*.css -u autoprefixer --autoprefixer.browsers '&gt; 5%, ie 9' --dir $npm_package_config_css_out",
-    "css:mediaclean": "mqpacker $npm_package_config_css_out/*.css $npm_package_config_css_out/*.css",
-    "/////////////////////////////COMPILE ES6 JS TO ES5 AND MINIFY //////////////////////////////////////": "",
-    "prebuild:js": "eslint --cache --fix --ignore-pattern public ./src/js; exit 0",
-    "build:js": "simplifyify src/js/scripts.js --bundle --minify --debug --outfile public/js/bundle.js",
-    "postbuild:js": "npm run server:reload"
+    "start": "gulp"
   },
   "keywords": [],
   "author": "",
@@ -53,25 +27,15 @@
     "babel-preset-es2015": "^6.22.0",
     "babelify": "^7.3.0",
     "browser-sync": "^2.18.8",
-    "clean-css-cli": "^4.0.8",
     "css-mqpacker": "^5.0.1",
-    "cssmin": "^0.4.3",
     "cssnano": "^3.10.0",
-    "eslint": "^3.17.0",
     "gulp": "^3.9.1",
-    "gulp-babel": "^6.1.2",
-    "gulp-eslint": "^3.0.1",
     "gulp-jshint": "^2.0.4",
     "gulp-postcss": "^6.3.0",
     "gulp-sass": "^3.1.0",
     "gulp-watch": "^4.3.11",
-    "jquery": "^3.1.1",
     "jshint": "^2.9.4",
     "jshint-stylish": "^2.2.1",
-    "node-sass": "^4.5.0",
-    "npm-run-all": "^4.0.2",
-    "onchange": "^3.2.1",
-    "postcss-cli": "^3.0.0-beta",
     "simplifyify": "^3.2.1"
   }
 }

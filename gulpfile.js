@@ -56,7 +56,7 @@ gulp.task("lintjs", function() {
 });
 
 gulp.task("scripts",  ['lintjs'], function(done) {
-    // simplifyify - browserify and uglify wrapper
+    // simplifyify = browserify and uglify wrapper
 
     simplifyify(js_src + '/scripts.js',
         {
